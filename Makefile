@@ -21,7 +21,7 @@ clean:
 	@docker volume rm $$(docker volume ls -q)
 
 dev-config:
-	python3 -m venv ./venv; \
+	python3 -m venv ./venv;
 	. ./venv/bin/activate; \
 	pip3 install --upgrade pip;\
 	pip3 install -r ./requirements.dev --no-cache-dir;\
