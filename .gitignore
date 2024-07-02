@@ -1,0 +1,15 @@
+# python
+venv/
+__pycache__/
+pyvenv.cfg
+
+# django
+db.sqlite3
+
+.env
+
+# mac
+.DS_Store
+
+# jetbrains
+.idea/

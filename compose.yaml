@@ -1,0 +1,15 @@
+name: pingpong
+
+services:
+  django:
+    build:  ./django
+    container_name: django
+    networks:
+      - intra
+    ports:
+      - '8000:8000'
+    restart: on-failure
+
+networks:
+  intra:
+    driver: bridge
