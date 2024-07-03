@@ -65,6 +65,11 @@
 
     <script src="{% static 'js/magicgrid.js' %}"></script>
 
-
+    <div style="text-align: center; max-width: 600px; margin: 4.0rem auto;">
+        <a href="{% url 'articleapp:create' %}"
+           class="btn btn-dark rounded-pill col-3 mb-3">
+            Create article
+        </a>
+    </div>
 
 {% endblock %}
