@@ -7,32 +7,43 @@
                 {{ target_user.date_joined }}
             </p>
 
-            {% if target_user.profile %}
+            <img src="{{ target_user.profile.image.url }}" alt=""
+                 style="height:10.0rem; width: 8.0rem; border-radius: 10.0rem">
 
-                <h2 style="font-family: 'MaruBuri-Light'">
+            {% if target_user.profile %}
+                <h2 style="font-family: 'maruburi-light'">
                     {{ target_user.profile.nickname }}
                 </h2>
+                <h3 style="font-family: 'maruburi-light'">
+                    {{ target_user.profile.message }}
+                </h3>
+                {% if target_user == user %}
+                    <a href="{% url 'profileapp:update' pk=target_user.profile.pk %}">
+                        <h2 style="font-family: 'MaruBuri-Light'">
+                            update profile
+                        </h2>
+                    </a>
+                {% endif %}
+            {% else %}
+                {% if target_user == user %}
+                    <a href="{% url 'profileapp:create' %}">
+                        create profile
+                    </a>
                 {% else %}
-                <a href="{% url 'profileapp:create' %}">
-                    create profile
-                </a>
-
+                    <h2>닉네임 미설정</h2>
+                {% endif %}
             {% endif %}
 
             {% if target_user == user %}
-
                 <a href="{% url 'account:update' pk=user.pk %}">
                     change info
                 </a>
-
             {% endif %}
 
             {% if target_user == user %}
-
                 <a href="{% url 'account:delete' pk=user.pk %}">
                     quit
                 </a>
-
             {% endif %}
         </div>
     </div>
