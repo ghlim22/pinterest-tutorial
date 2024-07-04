@@ -21,49 +21,22 @@
 
     </style>
 
-    <div class="container">
-        <div class="item1">
-            <img src="https://picsum.photos/200/300">
+    {% if article_list %}
+        <div class="container">
+            {% for article in article_list %}
+                <a href="{% url 'articleapp:detail' pk=article.pk %}">
+                    {% include 'snippets/card.html' with article=article %}
+                </a>
+            {% endfor %}
         </div>
-        <div class="item2">
-            <img src="https://picsum.photos/200/500">
+        <script src="{% static 'js/magicgrid.js' %}"></script>
+    {% else %}
+        <div class="text-center">
+            <h1>No articles</h1>
         </div>
-        <div class="item3">
-            <img src="https://picsum.photos/200/400">
-        </div>
-        <div class="item4">
-            <img src="https://picsum.photos/200/550">
-        </div>
-        <div class="item5">
-            <img src="https://picsum.photos/200/250">
-        </div>
-        <div class="item6">
-            <img src="https://picsum.photos/200/350">
-        </div>
-        <div class="item7">
-            <img src="https://picsum.photos/200/540">
-        </div>
-        <div class="item8">
-            <img src="https://picsum.photos/200/430">
-        </div>
-        <div class="item9">
-            <img src="https://picsum.photos/200/600">
-        </div>
-        <div class="item10">
-            <img src="https://picsum.photos/200/320">
-        </div>
-        <div class="item11">
-            <img src="https://picsum.photos/200/420">
-        </div>
-        <div class="item12">
-            <img src="https://picsum.photos/200/430">
-        </div>
-        <div class="item13">
-            <img src="https://picsum.photos/200/550">
-        </div>
-    </div>
+    {% endif %}
 
-    <script src="{% static 'js/magicgrid.js' %}"></script>
+    {% include 'snippets/pagination.html' with page_obj=page_obj %}
 
     <div style="text-align: center; max-width: 600px; margin: 4.0rem auto;">
         <a href="{% url 'articleapp:create' %}"
