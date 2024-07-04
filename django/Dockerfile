@@ -14,7 +14,11 @@ EOF
 
 ENV PATH="/venv/bin:$PATH"
 
-RUN pip3 install -r ./requirements.txt --no-cache-dir
+RUN <<EOF
+pip3 install -r ./requirements.txt --no-cache-dir
+python3 manage.py makemigrations
+python3 manage.py migrate
+EOF
 
 ENTRYPOINT [ "python3" ]
 
