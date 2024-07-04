@@ -1,3 +1,4 @@
+from commentapp.forms import CommentCreationForm
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
@@ -9,6 +10,7 @@ from django.views.generic import (
     ListView,
     UpdateView,
 )
+from django.views.generic.edit import FormMixin
 
 from . import deco, forms, models
 
@@ -35,10 +37,11 @@ class ArticleCreateView(CreateView):
         return reverse("articleapp:detail", kwargs={"pk": self.object.pk})
 
 
-class ArticleDetailView(DetailView):
+class ArticleDetailView(DetailView, FormMixin):
     model = models.Article
     context_object_name = "target_article"
     template_name = "articleapp/detail.html"
+    form_class = CommentCreationForm
 
 
 @method_decorator(has_ownership, "get")
