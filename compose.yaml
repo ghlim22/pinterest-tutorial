@@ -1,9 +1,9 @@
 name: pingpong
 
 services:
-  django:
-    build:  ./django
-    container_name: django
+  backend:
+    build:  ./backend
+    container_name: backend
     networks:
       - intra
     ports:

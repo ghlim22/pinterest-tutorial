@@ -1,9 +1,14 @@
 from articleapp.models import Article
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.urls import reverse
-from django.views.generic import CreateView
+from django.utils.decorators import method_decorator
+from django.views.generic import CreateView, DeleteView
 
-from . import forms, models
+from . import deco, forms, models
+
+has_ownership = [login_required, deco.comment_ownership_required]
+
 
 # Create your views here.
 
@@ -19,6 +24,17 @@ class CommentCreateView(CreateView):
         temp_comment.writer = self.request.user
         temp_comment.save()
         return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse("articleapp:detail", kwargs={"pk": self.object.article.pk})
+
+
+@method_decorator(has_ownership, "get")
+@method_decorator(has_ownership, "post")
+class CommentDeleteView(DeleteView):
+    model = models.Comment
+    context_object_name = "target_comment"
+    template_name = "commentapp/delete.html"
 
     def get_success_url(self):
         return reverse("articleapp:detail", kwargs={"pk": self.object.article.pk})
