@@ -1,26 +1,27 @@
 <div class="pragmatic_header">
     <div>
         <h1>
-            Pragmatic
+            PINTEREST-TUTORIAL
         </h1>
     </div>
-    <div>
-        <a href="{% url 'articleapp:list' %}">
-            <span>list</span>
+    <div class="pragmatic_header_nav_bar">
+        <a href="{% url 'articleapp:list' %}" class="pragmatic_header_nav">
+            <span>ARTICLES</span>
         </a>
-        <span>nav2</span>
-        <span>nav3</span>
+        <a href="{% url 'projectapp:list' %}" class="pragmatic_header_nav">
+            <span>PROJECTS</span>
+        </a>
 
         {% if not user.is_authenticated %}
-            <a href="{% url 'account:login' %}?next={{ request.path }}">
-                <span>login</span>
+            <a href="{% url 'account:login' %}?next={{ request.path }}" class="pragmatic_header_nav">
+                <span>LOGIN</span>
             </a>
-            <a href="{% url 'account:create' %}">
-                <span>sign up</span>
+            <a href="{% url 'account:create' %}" class="pragmatic_header_nav">
+                <span>SIGN UP</span>
             </a>
         {% else %}
-            <a href="{% url 'account:detail' pk=user.pk %}">
-                <span>MyPage</span>
+            <a href="{% url 'account:detail' pk=user.pk %}" class="pragmatic_header_nav">
+                <span>MY PAGE</span>
             </a>
             <form action="{% url 'account:logout' %}" method="post">
                 {% csrf_token %}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <style>
+        .container {
+            padding: 0;
+            margin: 0, auto;
+        }
+
+        .container div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 1.0rem;
+        }
+
+        .container img {
+            width: 7rem;
+            height: 7rem;
+            object-fit: cover;
+            border-radius: 1.0rem;
+        }
+
+    </style>
+
+    {% if project_list %}
+        <div class="container">
+            {% for project in project_list %}
+                <a href="{% url 'projectapp:detail' pk=project.pk %}">
+                    {% include 'snippets/card_project.html' with project=project %}
+                </a>
+            {% endfor %}
+        </div>
+        <script src="{% static 'js/magicgrid.js' %}"></script>
+    {% else %}
+        <div class="text-center">
+            <h1>No projects</h1>
+        </div>
+    {% endif %}
+
+    {% include 'snippets/pagination.html' with page_obj=page_obj %}
+
+    <div style="text-align: center; max-width: 600px; margin: 4.0rem auto;">
+        <a href="{% url 'projectapp:create' %}"
+           class="btn btn-dark rounded-pill col-3 mb-3">
+            Create a project
+        </a>
+    </div>
+
+{% endblock %}
