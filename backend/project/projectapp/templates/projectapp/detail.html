@@ -9,9 +9,14 @@
 
         <hr>
 
-        <img style="width: 100%; border-radius: 1.0rem; margin: 2.0rem; object-fit: cover;" src="{{ target_project.image.url }}" alt="">
+        <img style="width: 100%; border-radius: 1.0rem; margin: 2.0rem; object-fit: cover;"
+             src="{{ target_project.image.url }}" alt="">
 
         <p>{{ target_project.description }}</p>
+
+        <div>
+            {% include 'snippets/list_fragment.html' with article_list=object_list %}
+        </div>
 
         <hr>
     </div>

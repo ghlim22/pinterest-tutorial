@@ -1,3 +1,4 @@
+from articleapp.models import Article
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -11,6 +12,7 @@ from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DeleteView, DetailView, UpdateView
+from django.views.generic.list import MultipleObjectMixin
 
 from .deco import account_ownership_required
 from .forms import AccountUpdateForm
@@ -44,10 +46,15 @@ class AccountCreateView(CreateView):
 
 
 @method_decorator(has_ownership, "get")
-class AccountDetailView(DetailView):
+class AccountDetailView(DetailView, MultipleObjectMixin):
     model = User
     context_object_name = "target_user"
     template_name = "account/detail.html"
+    paginate_by = 25
+
+    def get_context_data(self, **kwargs):
+        object_list = Article.objects.filter(writer=self.get_object())
+        return super(AccountDetailView, self).get_context_data(object_list=object_list, **kwargs)
 
 
 @method_decorator(has_ownership, "get")
