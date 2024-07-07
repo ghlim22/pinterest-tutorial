@@ -9,9 +9,10 @@
 
         <hr>
 
-        <img style="width: 100%; border-radius: 1.0rem; margin: 2.0rem; object-fit: cover;" src="{{ target_article.image.url }}" alt="">
+        <img style="width: 100%; border-radius: 1.0rem; margin: 2.0rem; object-fit: cover;"
+             src="{{ target_article.image.url }}" alt="">
 
-        <p>{{ target_article.content }}</p>
+        <div class="text-left">{{ target_article.content | safe }}</div>
 
         {% if target_article.writer == user %}
             <a href="{% url 'articleapp:update' pk=target_article.pk %}"
