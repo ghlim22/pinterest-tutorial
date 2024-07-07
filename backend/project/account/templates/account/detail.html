@@ -18,10 +18,9 @@
                     {{ target_user.profile.message }}
                 </h3>
                 {% if target_user == user %}
-                    <a href="{% url 'profileapp:update' pk=target_user.profile.pk %}">
-                        <h2 style="font-family: 'MaruBuri-Light'">
-                            update profile
-                        </h2>
+                    <a class="material-icons"
+                       href="{% url 'profileapp:update' pk=target_user.profile.pk %}">
+                    edit
                     </a>
                 {% endif %}
             {% else %}
@@ -35,14 +34,14 @@
             {% endif %}
 
             {% if target_user == user %}
-                <a href="{% url 'account:update' pk=user.pk %}">
-                    change info
+                <a class="material-icons" href="{% url 'account:update' pk=user.pk %}">
+                    account_circle
                 </a>
             {% endif %}
 
             {% if target_user == user %}
-                <a href="{% url 'account:delete' pk=user.pk %}">
-                    quit
+                <a class="material-icons" href="{% url 'account:delete' pk=user.pk %}">
+                    person_off
                 </a>
             {% endif %}
         </div>

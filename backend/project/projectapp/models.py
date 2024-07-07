@@ -8,3 +8,6 @@ class Project(models.Model):
     image = models.ImageField(upload_to="projects/", null=False)
     description = models.TextField(null=False)
     created_at = models.DateField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.pk}: {self.title}"

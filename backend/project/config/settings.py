@@ -140,8 +140,8 @@ MEDIA_URL = "media/"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "mediafiles")
 
-LOGIN_REDIRECT_URL = reverse_lazy("account:index")
-LOGOUT_REDIRECT_URL = reverse_lazy("account:index")
+LOGIN_REDIRECT_URL = reverse_lazy("home")
+LOGOUT_REDIRECT_URL = reverse_lazy("home")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

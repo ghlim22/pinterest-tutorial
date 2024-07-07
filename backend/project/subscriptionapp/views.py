@@ -29,6 +29,11 @@ class SubscriptionView(RedirectView):
         return super(SubscriptionView, self).get(request, *args, **kwargs)
 
 
+"""
+field lookups
+"""
+
+
 class SubscriptionListView(ListView):
     model = Article
     context_object_name = "article_list"
