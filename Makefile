@@ -4,7 +4,7 @@ COMPOSE = docker compose -f $(COMPOSE_PATH)
 all: up
 
 up:
-	@$(COMPOSE) up -d --build
+	@$(COMPOSE) up --detach --build
 
 start:
 	@$(COMPOSE) start
