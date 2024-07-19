@@ -28,7 +28,7 @@ services:
     volumes:
       - db-data:/var/lib/postgresql/data
 
-  web-server:
+  server:
     build: ./nginx
     container_name: nginx
     depends_on:
