@@ -48,5 +48,5 @@ class SubscriptionListView(ListView):
         """
         select ... where ... in ...
         """
-        article_list = Article.objects.filter(project__in=projects)
+        article_list = Article.objects.filter(project__in=projects).order_by("project_id")
         return article_list

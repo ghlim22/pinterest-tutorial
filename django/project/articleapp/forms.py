@@ -1,6 +1,7 @@
-from django import forms
 from django.forms import ModelForm
 from projectapp.models import Project
+
+from django import forms
 
 from . import models
 

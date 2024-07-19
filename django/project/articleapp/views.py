@@ -69,4 +69,8 @@ class ArticleListView(ListView):
     model = models.Article
     context_object_name = "article_list"
     template_name = "articleapp/list.html"
-    paginate_by = 5
+    paginate_by = 20
+
+    def get_queryset(self):
+        article_list = models.Article.objects.all().order_by("-created_at")
+        return article_list

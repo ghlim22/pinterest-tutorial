@@ -41,7 +41,7 @@ def index(request: HttpRequest) -> HttpResponse:
 class AccountCreateView(CreateView):
     model = User
     form_class = UserCreationForm
-    success_url = reverse_lazy("account:index")
+    success_url = reverse_lazy("home")
     template_name = "account/create.html"
 
 

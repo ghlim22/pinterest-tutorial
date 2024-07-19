@@ -31,6 +31,14 @@
             <div>
                 {% include 'snippets/list_fragment.html' with article_list=object_list %}
             </div>
+            <div>
+                {#                {% if user == target_project.user %}#}
+                <a href="{% url 'projectapp:delete' pk=target_project.pk %}"
+                   class="btn btn-danger rounded-pill col-3 mb-3">
+                    Delete
+                </a>
+                {#                {% endif %}#}
+            </div>
         </div>
 
         <hr>
