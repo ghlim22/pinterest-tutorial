@@ -1,25 +1,24 @@
-# syntax = docker/dockerfile:1.4
 FROM python:3
 
 EXPOSE 8000
 
-WORKDIR /project
+WORKDIR /usr/src/app
 
-COPY ./project/ ./
-COPY --chmod=755 ./tools/docker-entrypoint.sh ./.
-
+COPY ./srcs ./
+COPY ./tools ./
+# COPY ./tools/requirements.txt ./.
+# COPY --chmod=755 ./tools/docker-entrypoint.sh ./.
 ENV DJANGO_SETTINGS_MODULE config.settings.deployment
 ENV PIP_DISABLE_PIP_VERSION_CHECK 1
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
+RUN python3 -m venv ./venv
+ENV PATH "$PWD/venv/bin:$PATH"
 RUN <<EOF
 pip3 install --upgrade pip
-python3 -m venv /venv
+pip3 install --no-cache-dir -r ./requirements.txt
+chmod +x ./docker-entrypoint.sh
 EOF
-
-ENV PATH "/venv/bin:$PATH"
-
-RUN pip3 install -r ./requirements.txt --no-cache-dir
 
 ENTRYPOINT [ "./docker-entrypoint.sh" ]

@@ -13,8 +13,8 @@ services:
       - back-tier
     restart: on-failure
     volumes:
-      - static-data:/project/staticfiles/
-      - media-data:/project/mediafiles/
+      - static-data:/usr/src/app/staticfiles
+      - media-data:/usr/src/app/mediafiles
 
   db:
     build: ./postgres
@@ -40,8 +40,8 @@ services:
       - '80:80'
     restart: on-failure
     volumes:
-      - static-data:/data/static/
-      - media-data:/data/media/
+      - static-files:/usr/share/nginx/html/static-files
+      - media-files:/usr/share/nginx/html/media-files
 
 #  portainer:
 #    image: portainer/portainer-ce:latest
@@ -62,5 +62,5 @@ networks:
 
 volumes:
   db-data: {}
-  static-data: {}
-  media-data: {}
+  static-files: {}
+  media-files: {}
