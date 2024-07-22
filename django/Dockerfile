@@ -6,8 +6,7 @@ WORKDIR /usr/src/app
 
 COPY ./srcs ./
 COPY ./tools ./
-# COPY ./tools/requirements.txt ./.
-# COPY --chmod=755 ./tools/docker-entrypoint.sh ./.
+
 ENV DJANGO_SETTINGS_MODULE config.settings.deployment
 ENV PIP_DISABLE_PIP_VERSION_CHECK 1
 ENV PYTHONDONTWRITEBYTECODE 1

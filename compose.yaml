@@ -13,10 +13,10 @@ services:
       - back-tier
     restart: on-failure
     volumes:
-      - static-data:/usr/src/app/staticfiles
-      - media-data:/usr/src/app/mediafiles
+      - static-files:/usr/src/app/static-files
+      - media-files:/usr/src/app/media-files
 
-  db:
+  database:
     build: ./postgres
     container_name: postgres
     env_file:
@@ -40,8 +40,8 @@ services:
       - '80:80'
     restart: on-failure
     volumes:
-      - static-files:/usr/share/nginx/html/static-files
-      - media-files:/usr/share/nginx/html/media-files
+      - static-files:/usr/share/nginx/html/static
+      - media-files:/usr/share/nginx/html/media
 
 #  portainer:
 #    image: portainer/portainer-ce:latest
